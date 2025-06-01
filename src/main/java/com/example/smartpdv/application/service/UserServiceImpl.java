@@ -19,9 +19,6 @@ class UserServiceImpl implements IUserService {
 
     @Override
     public Optional<Usuario> registerUser(Usuario usuario) {
-        String passwordHash = PasswordHashGeneratorUtil.geraHash(usuario.getPassword());
-        usuario.setPassword(passwordHash);
-
         Usuario save = userRepository.save(usuario);
         return Optional.of(save);
     }

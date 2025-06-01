@@ -5,7 +5,10 @@ import com.example.smartpdv.application.request.LoginRequest;
 import com.example.smartpdv.application.request.UserRequest;
 import com.example.smartpdv.application.response.TokenResponse;
 import com.example.smartpdv.config.JwtTokenProvider;
+import com.example.smartpdv.domain.model.Usuario;
 import com.example.smartpdv.domain.service.IUserService;
+import com.example.smartpdv.infra.repository.UserRepository;
+import org.hibernate.internal.util.collections.ArrayHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +42,7 @@ public class AuthLoginController {
 
     @PostMapping("login")
     public TokenResponse login(@RequestBody LoginRequest loginRequest){
-        
+
         Authentication authenticate = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
