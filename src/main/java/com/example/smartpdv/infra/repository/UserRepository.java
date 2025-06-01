@@ -1,9 +1,8 @@
-package com.example.smartpdv.infra;
+package com.example.smartpdv.infra.repository;
 
 
 import com.example.smartpdv.domain.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.userdetails.User;
 
 import java.util.Optional;
 

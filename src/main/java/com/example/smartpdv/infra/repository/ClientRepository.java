@@ -1,4 +1,4 @@
-package com.example.smartpdv.infra;
+package com.example.smartpdv.infra.repository;
 
 import com.example.smartpdv.domain.model.Client;
 import org.springframework.data.jpa.repository.JpaRepository;

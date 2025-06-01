@@ -1,7 +1,7 @@
 package com.example.smartpdv.config;
 
 import com.example.smartpdv.domain.model.Usuario;
-import com.example.smartpdv.infra.UserRepository;
+import com.example.smartpdv.infra.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -2,9 +2,13 @@ package com.example.smartpdv.api.controller;
 
 
 import com.example.smartpdv.application.request.LoginRequest;
+import com.example.smartpdv.application.request.UserRequest;
 import com.example.smartpdv.application.response.TokenResponse;
 import com.example.smartpdv.config.JwtTokenProvider;
+import com.example.smartpdv.domain.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -29,8 +33,11 @@ public class AuthLoginController {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
+    @Autowired
+    private IUserService userService;
 
-    @PostMapping
+
+    @PostMapping("login")
     public TokenResponse login(@RequestBody LoginRequest loginRequest){
 
 
@@ -50,6 +57,13 @@ public class AuthLoginController {
 
         // Retorna token para o client
         return new TokenResponse(token);
+    }
+
+
+    @PostMapping("register")
+    public ResponseEntity register(@RequestBody UserRequest userRequest){
+        userService.registerUser(userRequest.converter());
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 }
