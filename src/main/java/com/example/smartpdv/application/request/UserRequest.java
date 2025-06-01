@@ -13,6 +13,8 @@ public class UserRequest {
 
     private String password;
 
+    private String role;
+
 
 
     public String getUsername() {
@@ -31,12 +33,19 @@ public class UserRequest {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public Usuario converter(){
         Usuario usuario = new Usuario();
         usuario.setPassword(this.password);
         usuario.setUsername(this.username);
-        usuario.setRole("ADMIN");
+        usuario.setRole(this.role);
         return usuario;
     }
 

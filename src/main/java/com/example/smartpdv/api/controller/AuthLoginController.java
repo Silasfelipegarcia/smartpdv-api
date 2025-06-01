@@ -39,8 +39,7 @@ public class AuthLoginController {
 
     @PostMapping("login")
     public TokenResponse login(@RequestBody LoginRequest loginRequest){
-
-
+        
         Authentication authenticate = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
