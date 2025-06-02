@@ -6,6 +6,7 @@ import com.example.smartpdv.application.request.UserRequest;
 import com.example.smartpdv.application.response.TokenResponse;
 import com.example.smartpdv.config.JwtTokenProvider;
 import com.example.smartpdv.domain.model.Usuario;
+import com.example.smartpdv.domain.service.IAuthencationService;
 import com.example.smartpdv.domain.service.IUserService;
 import com.example.smartpdv.infra.repository.UserRepository;
 import org.hibernate.internal.util.collections.ArrayHelper;
@@ -30,34 +31,19 @@ import java.util.stream.Collectors;
 public class AuthLoginController {
 
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
+
+
 
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private IAuthencationService authencationService;
 
     @PostMapping("login")
     public TokenResponse login(@RequestBody LoginRequest loginRequest){
-
-        Authentication authenticate = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
-        User user = (User) authenticate.getPrincipal();
-        String userName = user.getUsername();
-
-        List<String> roles = user.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .map(role -> role.replace("ROLE_", "")) // remove prefixo ROLE_
-                .collect(Collectors.toList());
-
-        // Gera token
-        String token = jwtTokenProvider.generateToken(userName, roles);
-
-        // Retorna token para o client
+        String token = authencationService.generateToken(loginRequest);
         return new TokenResponse(token);
     }
 
