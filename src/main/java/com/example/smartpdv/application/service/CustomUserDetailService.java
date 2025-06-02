@@ -1,4 +1,4 @@
-package com.example.smartpdv.config;
+package com.example.smartpdv.application.service;
 
 import com.example.smartpdv.domain.model.Usuario;
 import com.example.smartpdv.infra.repository.UserRepository;
