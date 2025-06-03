@@ -29,11 +29,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("auth")
 public class AuthLoginController {
-
-
-
-
-
+    
 
     @Autowired
     private IUserService userService;
