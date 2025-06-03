@@ -1,14 +1,20 @@
 package com.example.smartpdv.domain.service;
 
+import com.example.smartpdv.application.request.UserRequest;
+import com.example.smartpdv.application.response.UserResponse;
 import com.example.smartpdv.domain.model.Usuario;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 
-@Service
 public interface IUserService {
 
-    Optional<Usuario> registerUser(Usuario usuario);
+    List<Usuario> listUsers();
+
+    UserResponse getUser(Long userId);
+
+    UserResponse updateUser(Long idUser, UserRequest userRequest);
+
+    void deleteUser(Long userId);
 
 }

@@ -1,30 +1,17 @@
-package com.example.smartpdv.domain.model;
+package com.example.smartpdv.application.request;
 
-import jakarta.persistence.*;
+import com.example.smartpdv.domain.model.Usuario;
 
-@Entity
-public class Usuario {
+public class AuthRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
     private String role;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -49,4 +36,15 @@ public class Usuario {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public Usuario converter(){
+        Usuario usuario = new Usuario();
+        usuario.setPassword(this.password);
+        usuario.setUsername(this.username);
+        usuario.setRole(this.role);
+        return usuario;
+    }
+
+
+
 }
